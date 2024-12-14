@@ -1,7 +1,12 @@
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL) // Ignore null fields globally
+@JsonIgnoreProperties(ignoreUnknown = true) // Ignore unknown fields globally
 public class AbsLoginJsonResponse {
 
     private User user;
@@ -42,17 +47,17 @@ public class AbsLoginJsonResponse {
         this.source = source;
     }
 
-    // Nested Classes
-
+    @JsonInclude(JsonInclude.Include.NON_NULL) // Ignore null fields in User
+    @JsonIgnoreProperties(ignoreUnknown = true) // Ignore unknown fields in User
     public static class User {
 
         private String id;
         private String username;
+        private String email; // Added to handle "email" field in JSON
         private String type;
         private String token;
         private List<MediaProgress> mediaProgress;
-        private List<String> seriesHideFromContinueListening;
-        private List<String> bookmarks;
+        private List<Object> bookmarks; // Changed to Object to handle complex bookmarks structure
         private boolean isActive;
         private boolean isLocked;
         private long lastSeen;
@@ -76,6 +81,14 @@ public class AbsLoginJsonResponse {
 
         public void setUsername(String username) {
             this.username = username;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
         }
 
         public String getType() {
@@ -102,19 +115,11 @@ public class AbsLoginJsonResponse {
             this.mediaProgress = mediaProgress;
         }
 
-        public List<String> getSeriesHideFromContinueListening() {
-            return seriesHideFromContinueListening;
-        }
-
-        public void setSeriesHideFromContinueListening(List<String> seriesHideFromContinueListening) {
-            this.seriesHideFromContinueListening = seriesHideFromContinueListening;
-        }
-
-        public List<String> getBookmarks() {
+        public List<Object> getBookmarks() {
             return bookmarks;
         }
 
-        public void setBookmarks(List<String> bookmarks) {
+        public void setBookmarks(List<Object> bookmarks) {
             this.bookmarks = bookmarks;
         }
 
@@ -174,7 +179,8 @@ public class AbsLoginJsonResponse {
             this.itemTagsAccessible = itemTagsAccessible;
         }
 
-        // Nested Classes for User
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        @JsonIgnoreProperties(ignoreUnknown = true)
         public static class MediaProgress {
 
             private String id;
@@ -279,6 +285,8 @@ public class AbsLoginJsonResponse {
             }
         }
 
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        @JsonIgnoreProperties(ignoreUnknown = true)
         public static class Permissions {
 
             private boolean download;
@@ -348,6 +356,8 @@ public class AbsLoginJsonResponse {
         }
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class ServerSettings {
 
         private String id;
@@ -382,4 +392,3 @@ public class AbsLoginJsonResponse {
         }
     }
 }
-

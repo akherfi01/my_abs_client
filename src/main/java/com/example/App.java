@@ -50,7 +50,7 @@ public class App extends Application {
         try {
             ApiClient.setUsername("root");
             ApiClient.setPassword("spock");
-            ApiClient.setUri("http://192.168.1.7:13378/login");
+            ApiClient.setUri("https://reda-akherfi.me/login");
 
             ApiClient.login();
         }catch (URISyntaxException e) {

@@ -25,6 +25,12 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.15.0</version> <!-- Use the latest stable version -->
             </dependency>
+            <!-- Jackson Annotations -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.15.0</version>
+    </dependency>
     </dependencies>
     <build>
         <plugins>

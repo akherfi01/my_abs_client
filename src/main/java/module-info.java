@@ -4,6 +4,7 @@ module com.example {
     requires transitive javafx.graphics; // Add this line
     requires transitive java.net.http;
     requires transitive com.fasterxml.jackson.databind;
+    requires transitive com.fasterxml.jackson.annotation;
 
 
     // Opening controller for reflection (FXML use)
