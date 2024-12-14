@@ -1,0 +1,13 @@
+com/example/model/AbsLoginJsonResponse.class
+com/example/controller/SecondaryController.class
+com/example/controller/PrimaryController.class
+com/example/App.class
+com/example/model/AbsLoginJsonResponse$User.class
+com/example/model/AbsLoginJsonResponse$ServerSettings.class
+com/example/model/AbsLoginJsonResponse$User$Permissions.class
+com/example/api/ApiService.class
+com/example/api/ApiClient.class
+com/example/util/JsonParser.class
+module-info.class
+com/example/model/AbsLoginJsonResponse$User$MediaProgress.class
+com/example/model/Book.class
