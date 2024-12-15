@@ -7,10 +7,13 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import com.example.model.AbsLoginJsonResponse;
+// import com.example.model.AbsLoginJsonResponse;
+// import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 
-import java.util.List;
+// import java.util.List;
+// import java.util.Map;
 
 
 public  class ApiClient {
@@ -61,13 +64,13 @@ public  class ApiClient {
         HttpResponse<String> r_response = ApiClient.client.send(r_request, HttpResponse.BodyHandlers.ofString());
         // for debuggin
         System.out.println("------------------ status: " + r_response.statusCode());
-
+        
+        // dynamic json parsing as opposed to POJO
         ObjectMapper r_objectMapper = new ObjectMapper();
-        AbsLoginJsonResponse r_LoginResponse = r_objectMapper.readValue(r_response.body(), AbsLoginJsonResponse.class);
-        apiToken = r_LoginResponse.getUser().getToken();
-        List<String> r_LibrariesAbs = r_LoginResponse.getUser().getLibrariesAccessible();
+        JsonNode r_RootNode = r_objectMapper.readTree(r_response.body());
+        apiToken = r_RootNode.get("user").get("token").asText();
+
         System.out.println("------------------ apiToken: " + apiToken);
-        System.out.println("------------------ libraries ABS: " + r_LibrariesAbs);
         return apiToken;
     }
 

@@ -44,13 +44,13 @@ public class App extends Application {
 
 
     public static void main(String[] args) {
-        // launch();
+        launch();
 
         // login to ABS
         try {
             ApiClient.setUsername("root");
             ApiClient.setPassword("spock");
-            ApiClient.setUri("https://reda-akherfi.me/login");
+            ApiClient.setUri("https://abs.reda-akherfi.me/login");
 
             ApiClient.login();
         }catch (URISyntaxException e) {
